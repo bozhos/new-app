@@ -1,7 +1,0 @@
-version: '2.1'
-orbs:
-  install-orb: bozhos/install-orb@1.2.3
-workflows:
-  test-my-orb:
-    jobs:
-      - install-orb/install
