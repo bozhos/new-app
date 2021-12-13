@@ -4,5 +4,5 @@ orbs:
 workflows:
   use-my-orb:
     jobs:
-      - install-orb/install:
-        - dotnet_version: 3.1
+      - install-orb/install
+
