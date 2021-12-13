@@ -5,4 +5,4 @@ workflows:
   test-my-orb:
     jobs:
       - install-orb/install:
-          dotnet_version: "6.0"
+
