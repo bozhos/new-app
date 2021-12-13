@@ -4,5 +4,5 @@ orbs:
 workflows:
   test-my-orb:
     jobs:
-      - install-orb/install:
+      - install-orb/install
 
