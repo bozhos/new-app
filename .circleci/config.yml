@@ -1,16 +1,8 @@
 version: '2.1'
 orbs:
-  install-orb: bozhos/install-orb@2.1.2
+  install-orb: bozhos/install-orb@2.2.1
 
 jobs:
-  build:
-      - install-orb/install:
-          dotnet_version: "3.1"
-          app_directory: "deploynewapp"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
   deploy:
     docker:
       - image: cimg/base:stable
@@ -28,7 +20,9 @@ jobs:
 workflows:
   test-my-orb:
     jobs:
-      - build
+      - install-orb/install:
+          dotnet_version: "3.1"
+          app_directory: "deploynewapp"
       - deploy:
           requires:
-            - build
+            - install-orb/install
