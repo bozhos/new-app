@@ -1,10 +1,10 @@
 version: '2.1'
 orbs:
-  install-orb: bozhos/install-orb@1.0.1
+  install-orb: bozhos/install-orb@2.0.0
 workflows:
   test-my-orb:
     jobs:
       - install-orb/install:
           dotnet_version: "3.1"
-      - install-orb/build
+          app_directory: "deploynewapp"
     
