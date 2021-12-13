@@ -1,10 +1,35 @@
 version: '2.1'
 orbs:
-  install-orb: bozhos/install-orb@2.2.0
-workflows:
-  test-my-orb:
-    jobs:
+  install-orb: bozhos/install-orb@2.1.2
+
+jobs:
+  build:
+    steps:
       - install-orb/install:
           dotnet_version: "3.1"
           app_directory: "deploynewapp"
-    
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: "add ingress rule to aws sg"
+          command: | 
+                    pwd
+                    ls -l
+
+workflows:
+  test-my-orb:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
