@@ -4,7 +4,6 @@ orbs:
 
 jobs:
   build:
-    steps:
       - install-orb/install:
           dotnet_version: "3.1"
           app_directory: "deploynewapp"
