@@ -2,16 +2,6 @@ version: '2.1'
 orbs:
   install-orb: bozhos/install-orb@2.2.1
 
-parameters:
-  dotnet_version:
-    description: Select a specific version of the .NET Core framework.
-    default: "3.1"
-    type: string
-  app_directory:
-    description: Select a specific folder for publishing the app
-    default: "deployapp"
-    type: string
-
 jobs:
   deploy:
     executor: install-orb/default
@@ -23,7 +13,7 @@ jobs:
       - run:
           name: "add ingress rule to aws sg"
           environment:
-            PARAM_APP_DIRECTORY: <<parameters.app_directory>>
+            PARAM_APP_DIRECTORY: "deployapp"
           command: | 
                     pwd
                     ls -la
@@ -38,9 +28,7 @@ jobs:
 workflows:
   test-my-orb:
     jobs:
-      - install-orb/install:
-          dotnet_version: <<parameters.dotnet_version>>
-          app_directory: <<parameters.app_directory>>
+      - install-orb/install
       - deploy:
           context: 
             - aws-context
