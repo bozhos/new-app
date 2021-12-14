@@ -1,6 +1,9 @@
 version: '2.1'
+
+
 orbs:
   install-orb: bozhos/install-orb@2.2.1
+
 
 jobs:
   deploy:
@@ -24,6 +27,7 @@ jobs:
                     cat $PARAM_APP_DIRECTORY_$CIRCLE_SHA1.zip | ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "cat > $PARAM_APP_DIRECTORY_$CIRCLE_SHA1.zip"
                     ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "sudo unzip -o $PARAM_APP_DIRECTORY_$CIRCLE_SHA1.zip -d /opt/"
                     ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS  "sudo systemctl start test-app.service"
+
 
 workflows:
   test-my-orb:
