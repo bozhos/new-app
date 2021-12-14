@@ -4,8 +4,7 @@ orbs:
 
 jobs:
   deploy:
-    docker:
-      - image: cimg/base:stable
+    executor: install-orb/default
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
