@@ -15,7 +15,7 @@ jobs:
           name: "add ingress rule to aws sg"
           command: | 
                     pwd
-                    ls -l
+                    ls -la
 
 workflows:
   test-my-orb:
