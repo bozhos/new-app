@@ -39,6 +39,9 @@ jobs:
                     echo "unzipped zip at /opt"
                     ssh -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_DNS  "sudo systemctl start test-app.service"
                     echo "started test-app service"
+                    PUBLIC_IP=$(curl ipinfo.io/ip)
+                    ~/bin/aws ec2 revoke-security-group-ingress --region $AWS_REGION --group-id $SG_ID --protocol tcp --port 22 --cidr $PUBLIC_IP/24
+                    echo "removed ingress rule"
          
 workflows:
   test-my-orb:
