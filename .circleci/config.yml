@@ -43,53 +43,16 @@ jobs:
       #               echo "removed ingress rule"
       - slack/notify:
           custom: |
-            {
-              "blocks": [
-		            {
-			            "type": "header",
-			            "text": {
-				            "type": "plain_text",
-				            "text": "This is a header block",
-				            "emoji": true
-			            }
-		            },
-		            {
-			            "type": "section",
-			            "text": {
-				            "type": "mrkdwn",
-				            "text": "This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>"
-			            }
-		            },
-		            {
-			            "type": "context",
-			            "elements": [
-				            {
-					            "type": "mrkdwn",
-					            "text": "*This* is :smile: markdown"
-				            },
-				            {
-					            "type": "image",
-					            "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
-					            "alt_text": "cute cat"
-				            },
-				            {
-					            "type": "image",
-					            "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
-					            "alt_text": "cute cat"
-				            },
-				            {
-					            "type": "image",
-					            "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
-					            "alt_text": "cute cat"
-				            },
-				            {
-					            "type": "plain_text",
-					            "text": "Author: K A Applegate",
-					            "emoji": true
-				            }
-			            ]
-		            }
-              ]
+           {
+	            "blocks": [
+		              {
+			                "type": "section",
+			                "text": {
+				                  "type": "mrkdwn",
+				                  "text": "This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>"
+			                }
+		              }
+	            ]
             }            
           event: always
          
