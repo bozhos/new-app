@@ -100,5 +100,6 @@ workflows:
       - deploy:
           context: 
             - aws-context
+            - slack-context
           requires:
             - install
