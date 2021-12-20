@@ -43,7 +43,7 @@ jobs:
       #               echo "removed ingress rule"
       - slack/notify:
           custom: |
-           {
+            {
 	            "blocks": [
 		              {
 			                "type": "section",
