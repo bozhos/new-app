@@ -3,6 +3,7 @@ version: '2.1'
 
 orbs:
   install-orb: bozhos/install-orb@3.3.0
+  slack: circleci/slack@4.5.1
 
 jobs:
   install:
@@ -41,6 +42,23 @@ jobs:
                     PUBLIC_IP=$(curl ipinfo.io/ip)
                     sudo ~/bin/aws ec2 revoke-security-group-ingress --region $AWS_DEFAULT_REGION --group-id $SG_ID --protocol tcp --port 22 --cidr $PUBLIC_IP/24
                     echo "removed ingress rule"
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
          
 workflows:
   test-my-orb:
@@ -49,5 +67,6 @@ workflows:
       - deploy:
           context: 
             - aws-context
+            - slack-context
           requires:
             - install
